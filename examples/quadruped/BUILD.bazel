@@ -1,0 +1,23 @@
+load("@drake//tools/skylark:drake_cc.bzl", "drake_cc_binary")
+load("@drake//tools/lint:lint.bzl", "add_lint_tests")
+load("@drake//tools/install:install_data.bzl", "install_data")
+
+package(default_visibility = ["//visibility:public"])
+
+drake_cc_binary(
+    name = "mini_cheetah_sim",
+    srcs = ["mini_cheetah_sim.cpp"],
+    deps = [
+        "@drake//common:add_text_logging_gflags",
+        "@drake//multibody/parsing",
+        "@drake//systems/analysis:simulator",
+        "@drake//systems/analysis:simulator_gflags",
+        "@drake//systems/framework:diagram",
+        "@drake//visualization:visualization_config_functions",
+        "@gflags"
+    ],
+)
+
+install_data()
+
+add_lint_tests()
